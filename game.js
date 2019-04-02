@@ -4,7 +4,6 @@
 let platforms
 let player
 let cursors
-let facing = 'right'
 let a
 let diamonds
 let airborn
@@ -55,7 +54,7 @@ function create () {
 
   this.physics.add.collider(a, platforms)
 
-  player = this.physics.add.sprite(100, 600, 'bunny2_walk1').setScale(0.3)
+  player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
 
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
@@ -94,11 +93,9 @@ function update () {
   player.body.velocity.x = 0
   if (cursors.left.isDown) {
     player.body.velocity.x = -200
-    facing = 'left'
     player.flipX = true
   } else if (cursors.right.isDown) {
     player.body.velocity.x = +200
-    facing = 'right'
     player.flipX = false
   }
 
