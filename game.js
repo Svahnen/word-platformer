@@ -83,7 +83,8 @@ function update () {
     player.body.velocity.x = -200
     player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'left'
-    player.scaleX *= -1
+    // TODO: Find a way to flip the animation that does not mess with the hitbox
+    /* player.scaleX *= -1 */
   } else if (cursors.right.isDown) {
     player.body.velocity.x = +200
     player.anims.play('bunny2-walk', true).setScale(0.3)
@@ -91,7 +92,7 @@ function update () {
   } else {
     if (facing === 'left') {
       player.anims.play('bunny2-idle', true).setScale(0.3)
-      player.scaleX *= -1
+      /* player.scaleX *= -1 */
     } else {
       player.anims.play('bunny2-idle', true).setScale(0.3)
     }
