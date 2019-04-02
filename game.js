@@ -31,13 +31,13 @@ function preload () {
   this.load.image('bunny2_walk1', 'assets/players/bunny2_walk1.png')
   this.load.image('bunny2_walk2', 'assets/players/bunny2_walk2.png')
 
-  this.load.image('background', 'assets/sky.png')
+  this.load.image('background', 'assets/background/bg_layer4.png')
   this.load.image('platform', 'assets/platform.png')
 }
 
 function create () {
-  this.add.image(400, 300, 'background').setScale(1.6)
-
+  this.cameras.main.setBackgroundColor('#ffffff')
+  this.add.image(500, 350, 'background').setScale(0.5)
   platforms = this.physics.add.staticGroup()
   platforms.create(500, 750, 'platform').setScale(3).refreshBody()
   platforms.create(200, 500, 'platform')
@@ -75,7 +75,6 @@ function create () {
     frameRate: 10,
     repeat: 0
   })
-  console.log(player)
 }
 
 function update () {
