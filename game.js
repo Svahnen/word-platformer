@@ -5,6 +5,8 @@ let platforms
 let player
 let cursors
 let facing
+let a
+let diamonds
 
 let game = new Phaser.Game(
   {
@@ -38,10 +40,18 @@ function create () {
   platforms.create(400, 568, 'platform').setScale(2).refreshBody()
   platforms.create(200, 425, 'platform')
 
+  let style = { font: '32px Arial', fill: '#000000', align: 'center' }
+
+  a = this.add.text(300, 450, 'A', style)
+  this.physics.world.enable(a)
+
+  this.physics.add.collider(a, platforms)
+
   player = this.physics.add.sprite(100, 520, 'playerSprite')
   player.setBounce(0.2)
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
+  this.physics.add.overlap(player, a, collectLetter)
 
   cursors = this.input.keyboard.createCursorKeys()
 
@@ -91,4 +101,8 @@ function update () {
   if (cursors.up.isDown && player.body.onFloor()) {
     player.body.velocity.y = -300
   }
+}
+
+function collectLetter (player, item) {
+  item.destroy()
 }
