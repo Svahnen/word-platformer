@@ -16,7 +16,7 @@ let game = new Phaser.Game(
     physics: {
       default: 'arcade',
       arcade: {
-        gravity: { y: 300 },
+        gravity: { y: 500 },
         debug: false
       }
     },
@@ -32,16 +32,18 @@ function preload () {
   this.load.image('bunny2_walk2', 'assets/players/bunny2_walk2.png')
 
   this.load.image('background', 'assets/background/bg_layer4.png')
-  this.load.image('platform', 'assets/platform.png')
+  this.load.image('ground_grass', 'assets/environment/ground_grass.png')
+  this.load.image('ground_grass_small', 'assets/environment/ground_grass_small.png')
 }
 
 function create () {
   this.cameras.main.setBackgroundColor('#ffffff')
-  this.add.image(500, 350, 'background').setScale(0.5)
+  this.add.image(500, 350, 'background').setScale(0.55)
+
   platforms = this.physics.add.staticGroup()
-  platforms.create(500, 750, 'platform').setScale(3).refreshBody()
-  platforms.create(200, 500, 'platform')
-  platforms.create(400, 600, 'platform')
+  platforms.create(250, 750, 'ground_grass')
+  platforms.create(600, 650, 'ground_grass_small')
+  platforms.create(300, 550, 'ground_grass_small')
 
   let style = { font: '48px Arial', fill: '#000000', align: 'center' }
 
@@ -51,7 +53,7 @@ function create () {
   this.physics.add.collider(a, platforms)
 
   player = this.physics.add.sprite(100, 600, 'bunny2_walk1').setScale(0.3)
-  player.setBounce(0.3)
+
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
   this.physics.add.overlap(player, a, collectLetter)
@@ -99,7 +101,7 @@ function update () {
     }
   }
   if (cursors.up.isDown && player.body.onFloor()) {
-    player.body.velocity.y = -300
+    player.body.velocity.y = -350
   }
 }
 
