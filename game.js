@@ -75,6 +75,7 @@ function create () {
     frameRate: 10,
     repeat: 0
   })
+  console.log(player)
 }
 
 function update () {
@@ -83,18 +84,19 @@ function update () {
     player.body.velocity.x = -200
     player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'left'
-    // TODO: Find a way to flip the animation that does not mess with the hitbox
-    /* player.scaleX *= -1 */
+    player.flipX = true
   } else if (cursors.right.isDown) {
     player.body.velocity.x = +200
     player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'right'
+    player.flipX = false
   } else {
     if (facing === 'left') {
       player.anims.play('bunny2-idle', true).setScale(0.3)
-      /* player.scaleX *= -1 */
+      player.flipX = true
     } else {
       player.anims.play('bunny2-idle', true).setScale(0.3)
+      player.flipX = false
     }
   }
   if (cursors.up.isDown && player.body.onFloor()) {
