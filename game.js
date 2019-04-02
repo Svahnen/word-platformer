@@ -7,6 +7,7 @@ let cursors
 let facing = 'right'
 let a
 let diamonds
+let airborn
 
 let game = new Phaser.Game(
   {
@@ -30,6 +31,8 @@ let game = new Phaser.Game(
 function preload () {
   this.load.image('bunny2_walk1', 'assets/players/bunny2_walk1.png')
   this.load.image('bunny2_walk2', 'assets/players/bunny2_walk2.png')
+  this.load.image('bunny2_jump', 'assets/players/bunny2_jump.png')
+  this.load.image('bunny2_stand', 'assets/players/bunny2_stand.png')
 
   this.load.image('background', 'assets/background/bg_layer4.png')
   this.load.image('ground_grass', 'assets/environment/ground_grass.png')
@@ -72,9 +75,17 @@ function create () {
   this.anims.create({
     key: 'bunny2-idle',
     frames: [
-      { key: 'bunny2_walk1' }
+      { key: 'bunny2_stand' }
     ],
-    frameRate: 10,
+    frameRate: 1,
+    repeat: 0
+  })
+  this.anims.create({
+    key: 'bunny2-jump',
+    frames: [
+      { key: 'bunny2_jump' }
+    ],
+    frameRate: 1,
     repeat: 0
   })
 }
@@ -83,25 +94,36 @@ function update () {
   player.body.velocity.x = 0
   if (cursors.left.isDown) {
     player.body.velocity.x = -200
-    player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'left'
     player.flipX = true
   } else if (cursors.right.isDown) {
     player.body.velocity.x = +200
-    player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'right'
     player.flipX = false
-  } else {
-    if (facing === 'left') {
-      player.anims.play('bunny2-idle', true).setScale(0.3)
-      player.flipX = true
-    } else {
-      player.anims.play('bunny2-idle', true).setScale(0.3)
-      player.flipX = false
-    }
   }
+
   if (cursors.up.isDown && player.body.onFloor()) {
     player.body.velocity.y = -350
+  }
+  if (cursors.up.isDown) {
+    airborn = true
+  }
+
+  if (airborn) {
+    player.anims.play('bunny2-jump', true).setScale(0.3)
+  } else if (!airborn && cursors.left.isDown) {
+    player.anims.play('bunny2-walk', true).setScale(0.3)
+  } else if (!airborn && cursors.right.isDown) {
+    player.anims.play('bunny2-walk', true).setScale(0.3)
+  } else {
+    player.anims.play('bunny2-idle', true).setScale(0.3)
+  }
+
+  if (player.body.onFloor() && cursors.right.isDown) {
+    airborn = false
+  }
+  if (player.body.onFloor() && cursors.left.isDown) {
+    airborn = false
   }
 }
 
