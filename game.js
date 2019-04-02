@@ -4,14 +4,14 @@
 let platforms
 let player
 let cursors
-let facing
+let facing = 'right'
 let a
 let diamonds
 
 let game = new Phaser.Game(
   {
-    width: 800,
-    height: 600,
+    width: 1024,
+    height: 768,
     type: Phaser.AUTO,
     physics: {
       default: 'arcade',
@@ -28,27 +28,30 @@ let game = new Phaser.Game(
   })
 
 function preload () {
+  this.load.image('bunny2_walk1', 'assets/players/bunny2_walk1.png')
+  this.load.image('bunny2_walk2', 'assets/players/bunny2_walk2.png')
+
   this.load.image('background', 'assets/sky.png')
   this.load.image('platform', 'assets/platform.png')
-  this.load.spritesheet('playerSprite', 'assets/woof.png', { frameWidth: 32, frameHeight: 32 })
 }
 
 function create () {
-  this.add.image(400, 300, 'background')
+  this.add.image(400, 300, 'background').setScale(1.6)
 
   platforms = this.physics.add.staticGroup()
-  platforms.create(400, 568, 'platform').setScale(2).refreshBody()
-  platforms.create(200, 425, 'platform')
+  platforms.create(500, 750, 'platform').setScale(3).refreshBody()
+  platforms.create(200, 500, 'platform')
+  platforms.create(400, 600, 'platform')
 
-  let style = { font: '32px Arial', fill: '#000000', align: 'center' }
+  let style = { font: '48px Arial', fill: '#000000', align: 'center' }
 
-  a = this.add.text(300, 450, 'A', style)
+  a = this.add.text(300, 400, 'A', style)
   this.physics.world.enable(a)
 
   this.physics.add.collider(a, platforms)
 
-  player = this.physics.add.sprite(100, 520, 'playerSprite')
-  player.setBounce(0.2)
+  player = this.physics.add.sprite(100, 600, 'bunny2_walk1').setScale(0.3)
+  player.setBounce(0.3)
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
   this.physics.add.overlap(player, a, collectLetter)
@@ -56,26 +59,19 @@ function create () {
   cursors = this.input.keyboard.createCursorKeys()
 
   this.anims.create({
-    key: 'left',
-    frames: this.anims.generateFrameNumbers('playerSprite', { start: 0, end: 1 }),
+    key: 'bunny2-walk',
+    frames: [
+      { key: 'bunny2_walk1' },
+      { key: 'bunny2_walk2' }
+    ],
     frameRate: 10,
     repeat: -1
   })
   this.anims.create({
-    key: 'right',
-    frames: this.anims.generateFrameNumbers('playerSprite', { start: 2, end: 3 }),
-    frameRate: 10,
-    repeat: -1
-  })
-  this.anims.create({
-    key: 'idle-left',
-    frames: this.anims.generateFrameNumbers('playerSprite', { start: 1, end: 1 }),
-    frameRate: 10,
-    repeat: 0
-  })
-  this.anims.create({
-    key: 'idle-right',
-    frames: this.anims.generateFrameNumbers('playerSprite', { start: 2, end: 2 }),
+    key: 'bunny2-idle',
+    frames: [
+      { key: 'bunny2_walk1' }
+    ],
     frameRate: 10,
     repeat: 0
   })
@@ -85,17 +81,19 @@ function update () {
   player.body.velocity.x = 0
   if (cursors.left.isDown) {
     player.body.velocity.x = -200
-    player.anims.play('left', true)
+    player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'left'
+    player.scaleX *= -1
   } else if (cursors.right.isDown) {
     player.body.velocity.x = +200
-    player.anims.play('right', true)
+    player.anims.play('bunny2-walk', true).setScale(0.3)
     facing = 'right'
   } else {
     if (facing === 'left') {
-      player.anims.play('idle-left', true)
+      player.anims.play('bunny2-idle', true).setScale(0.3)
+      player.scaleX *= -1
     } else {
-      player.anims.play('idle-right', true)
+      player.anims.play('bunny2-idle', true).setScale(0.3)
     }
   }
   if (cursors.up.isDown && player.body.onFloor()) {
