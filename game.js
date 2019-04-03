@@ -42,6 +42,11 @@ function preload () {
 }
 
 function create () {
+  let style = {
+    font: '48px Lilita One',
+    fill: '#e5c100',
+    align: 'center'
+  }
   let createLetter = (letter, x, y) => {
     let theLetter = this.add.text(x, y, letter, style)
     this.physics.world.enable(theLetter)
@@ -58,9 +63,10 @@ function create () {
   platforms.create(600, 650, 'ground_grass_small')
   platforms.create(300, 550, 'ground_grass_small')
 
-  let style = { font: '48px Pipe-Dream', fill: '#e5c100', align: 'center' }
   // Create all letters
-  createLetter('B', 200, 200)
+  createLetter('B', 250, 200)
+  createLetter('I', 350, 200)
+  createLetter('L', 600, 200)
 
   player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
 
@@ -99,8 +105,6 @@ function create () {
     frameRate: 1,
     repeat: 0
   })
-  // TODO: Make the font a little prettier by adding gradiant or shadow
-  /* console.log(letterA.style) */
   console.log(game)
 }
 
