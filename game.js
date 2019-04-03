@@ -127,7 +127,7 @@ function update () {
     playerYDelayed = Math.trunc(player.y)
   }, 50)
 
-  if (playerY === playerYDelayed) {
+  if (playerY > playerYDelayed) {
     airborn = false
   }
   // Debuggers
