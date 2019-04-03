@@ -4,9 +4,11 @@
 let platforms
 let player
 let cursors
-let a
+let letterA
 let diamonds
 let airborn
+let playerY = 0
+let playerYDelayed = 0
 
 let game = new Phaser.Game(
   {
@@ -47,18 +49,18 @@ function create () {
   platforms.create(600, 650, 'ground_grass_small')
   platforms.create(300, 550, 'ground_grass_small')
 
-  let style = { font: '48px Arial', fill: '#000000', align: 'center' }
+  let style = { font: '48px Pipe-Dream', fill: '#e5c100', align: 'center' }
 
-  a = this.add.text(300, 400, 'A', style)
-  this.physics.world.enable(a)
+  letterA = this.add.text(300, 400, 'A', style)
+  this.physics.world.enable(letterA)
 
-  this.physics.add.collider(a, platforms)
+  this.physics.add.collider(letterA, platforms)
 
   player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
 
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
-  this.physics.add.overlap(player, a, collectLetter)
+  this.physics.add.overlap(player, letterA, collectLetter)
 
   cursors = this.input.keyboard.createCursorKeys()
 
@@ -87,6 +89,9 @@ function create () {
     frameRate: 1,
     repeat: 0
   })
+  // TODO: Make the font a little prettier by adding gradiant or shadow
+  /* console.log(letterA.style) */
+  console.log(game)
 }
 
 function update () {
@@ -116,12 +121,19 @@ function update () {
     player.anims.play('bunny2-idle', true).setScale(0.3)
   }
 
-  if (player.body.onFloor() && cursors.right.isDown) {
+  // Set airborn variable for the jumping animation
+  playerY = Math.trunc(player.y)
+  setTimeout(() => {
+    playerYDelayed = Math.trunc(player.y)
+  }, 50)
+
+  if (playerY === playerYDelayed) {
     airborn = false
   }
-  if (player.body.onFloor() && cursors.left.isDown) {
-    airborn = false
-  }
+  // Debuggers
+  this.input.keyboard.on('keydown_P', function (event) {
+    console.log(player)
+  })
 }
 
 function collectLetter (player, item) {
