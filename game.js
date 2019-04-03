@@ -57,6 +57,8 @@ function create () {
     letters.push(theLetter)
   }
 
+  cursors = this.input.keyboard.createCursorKeys()
+
   // Set background color and background
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
@@ -71,8 +73,8 @@ function create () {
   createLetter('I', 350, 200)
   createLetter('L', 600, 200)
 
+  // Spawn the player
   player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
-
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
 
@@ -81,7 +83,6 @@ function create () {
     this.physics.add.overlap(player, letters[i], collectLetter)
   }
 
-  cursors = this.input.keyboard.createCursorKeys()
   // Animations
   this.anims.create({
     key: 'bunny2-walk',
@@ -123,6 +124,7 @@ function update () {
   if (cursors.up.isDown && player.body.onFloor()) {
     player.body.velocity.y = -350
   }
+
   // Set airborn variable for the jumping animation
   if (cursors.up.isDown) {
     airborn = true
