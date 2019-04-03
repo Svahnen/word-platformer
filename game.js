@@ -4,8 +4,6 @@
 let platforms
 let player
 let cursors
-let letterA
-let diamonds
 let airborn
 let playerY = 0
 let playerYDelayed = 0
@@ -31,12 +29,16 @@ let game = new Phaser.Game(
   })
 
 function preload () {
+  // Player assets
   this.load.image('bunny2_walk1', 'assets/players/bunny2_walk1.png')
   this.load.image('bunny2_walk2', 'assets/players/bunny2_walk2.png')
   this.load.image('bunny2_jump', 'assets/players/bunny2_jump.png')
   this.load.image('bunny2_stand', 'assets/players/bunny2_stand.png')
 
+  // Background assets
   this.load.image('background', 'assets/background/bg_layer4.png')
+
+  // Ground assets
   this.load.image('ground_grass', 'assets/environment/ground_grass.png')
   this.load.image('ground_grass_small', 'assets/environment/ground_grass_small.png')
 }
@@ -55,6 +57,7 @@ function create () {
     letters.push(theLetter)
   }
 
+  // Set background color and background
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
 
@@ -79,14 +82,14 @@ function create () {
   }
 
   cursors = this.input.keyboard.createCursorKeys()
-
+  // Animations
   this.anims.create({
     key: 'bunny2-walk',
     frames: [
       { key: 'bunny2_walk1' },
       { key: 'bunny2_walk2' }
     ],
-    frameRate: 10,
+    frameRate: 8,
     repeat: -1
   })
   this.anims.create({
@@ -105,10 +108,10 @@ function create () {
     frameRate: 1,
     repeat: 0
   })
-  console.log(game)
 }
 
 function update () {
+  // Keybindnings
   player.body.velocity.x = 0
   if (cursors.left.isDown) {
     player.body.velocity.x = -200
@@ -117,14 +120,22 @@ function update () {
     player.body.velocity.x = +200
     player.flipX = false
   }
-
   if (cursors.up.isDown && player.body.onFloor()) {
     player.body.velocity.y = -350
   }
+  // Set airborn variable for the jumping animation
   if (cursors.up.isDown) {
     airborn = true
   }
+  playerY = Math.trunc(player.y)
+  setTimeout(() => {
+    playerYDelayed = Math.trunc(player.y)
+  }, 50)
+  if (playerY > playerYDelayed) {
+    airborn = false
+  }
 
+  // Show animations
   if (airborn) {
     player.anims.play('bunny2-jump', true).setScale(0.3)
   } else if (!airborn && cursors.left.isDown) {
@@ -135,15 +146,6 @@ function update () {
     player.anims.play('bunny2-idle', true).setScale(0.3)
   }
 
-  // Set airborn variable for the jumping animation
-  playerY = Math.trunc(player.y)
-  setTimeout(() => {
-    playerYDelayed = Math.trunc(player.y)
-  }, 50)
-
-  if (playerY > playerYDelayed) {
-    airborn = false
-  }
   // Debuggers
   this.input.keyboard.on('keydown_P', function (event) {
     console.log(player)
