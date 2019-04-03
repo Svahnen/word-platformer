@@ -9,6 +9,7 @@ let diamonds
 let airborn
 let playerY = 0
 let playerYDelayed = 0
+let letters = []
 
 let game = new Phaser.Game(
   {
@@ -41,6 +42,14 @@ function preload () {
 }
 
 function create () {
+  let createLetter = (letter, x, y) => {
+    let theLetter = this.add.text(x, y, letter, style)
+    this.physics.world.enable(theLetter)
+    theLetter.setShadow(0, 0, 'yellow', 10)
+    this.physics.add.collider(theLetter, platforms)
+    letters.push(theLetter)
+  }
+
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
 
@@ -50,17 +59,18 @@ function create () {
   platforms.create(300, 550, 'ground_grass_small')
 
   let style = { font: '48px Pipe-Dream', fill: '#e5c100', align: 'center' }
-
-  letterA = this.add.text(300, 400, 'A', style)
-  this.physics.world.enable(letterA)
-
-  this.physics.add.collider(letterA, platforms)
+  // Create all letters
+  createLetter('B', 200, 200)
 
   player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
 
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
-  this.physics.add.overlap(player, letterA, collectLetter)
+
+  // Add collectLetters func to all letters
+  for (let i = 0; i < letters.length; i++) {
+    this.physics.add.overlap(player, letters[i], collectLetter)
+  }
 
   cursors = this.input.keyboard.createCursorKeys()
 
