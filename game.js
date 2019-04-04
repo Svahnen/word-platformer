@@ -1,6 +1,23 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 
+let word = [
+  {
+    letter: 'B',
+    x: 250,
+    y: 200
+  },
+  {
+    letter: 'I',
+    x: 350,
+    y: 200
+  },
+  {
+    letter: 'L',
+    x: 600,
+    y: 200
+  }
+]
 let platforms
 let player
 let cursors
@@ -8,6 +25,7 @@ let airborn
 let playerY = 0
 let playerYDelayed = 0
 let letters = []
+let showAtTopLastX = 50
 
 let game = new Phaser.Game(
   {
@@ -49,12 +67,21 @@ function create () {
     fill: '#e5c100',
     align: 'center'
   }
+  let showAtTop = (letter) => {
+    let theLetter = this.add.text(showAtTopLastX, 50, letter, style)
+    theLetter.setShadow(0, 0, 'yellow', 10)
+    showAtTopLastX += 50
+  }
   let createLetter = (letter, x, y) => {
     let theLetter = this.add.text(x, y, letter, style)
     this.physics.world.enable(theLetter)
     theLetter.setShadow(0, 0, 'yellow', 10)
     this.physics.add.collider(theLetter, platforms)
     letters.push(theLetter)
+  }
+  function collectLetter (player, item) {
+    showAtTop(item.text)
+    item.destroy()
   }
 
   cursors = this.input.keyboard.createCursorKeys()
@@ -69,9 +96,9 @@ function create () {
   platforms.create(300, 550, 'ground_grass_small')
 
   // Create all letters
-  createLetter('B', 250, 200)
-  createLetter('I', 350, 200)
-  createLetter('L', 600, 200)
+  for (let i = 0; i < word.length; i++) {
+    createLetter(word[i].letter, word[i].x, word[i].y)
+  }
 
   // Spawn the player
   player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
@@ -152,8 +179,4 @@ function update () {
   this.input.keyboard.on('keydown_P', function (event) {
     console.log(player)
   })
-}
-
-function collectLetter (player, item) {
-  item.destroy()
 }
