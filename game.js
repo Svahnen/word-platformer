@@ -25,7 +25,6 @@ let airborn
 let playerY = 0
 let playerYDelayed = 0
 let letters = []
-let showAtTopLastX = 50
 
 let game = new Phaser.Game(
   {
@@ -68,9 +67,14 @@ function create () {
     align: 'center'
   }
   let showAtTop = (letter) => {
-    let theLetter = this.add.text(showAtTopLastX, 50, letter, style)
+    let x
+    for (let i = 0; i < word.length; i++) {
+      if (word[i].letter === letter) {
+        x = 50 * i + 50
+      }
+    }
+    let theLetter = this.add.text(x, 50, letter, style)
     theLetter.setShadow(0, 0, 'yellow', 10)
-    showAtTopLastX += 50
   }
   let createLetter = (letter, x, y) => {
     let theLetter = this.add.text(x, y, letter, style)
