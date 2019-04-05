@@ -3,17 +3,17 @@
 
 let word = [
   {
-    letter: 'B',
+    letter: 'A',
     x: 250,
     y: 200
   },
   {
-    letter: 'I',
+    letter: 'P',
     x: 350,
     y: 200
   },
   {
-    letter: 'L',
+    letter: 'A',
     x: 600,
     y: 200
   }
@@ -66,15 +66,18 @@ function create () {
     fill: '#e5c100',
     align: 'center'
   }
-  let showAtTop = (letter) => {
+  let showAtTop = (item) => {    
+    let letter = item.text
     let x
     for (let i = 0; i < word.length; i++) {
-      if (word[i].letter === letter) {
-        x = 50 * i + 50
+      if (word[i].letter === item.text) {        
+        if (word[i].x === item.x) {          
+            x = 50 * i + 50
+            let theLetter = this.add.text(x, 50, letter, style)
+            theLetter.setShadow(0, 0, 'yellow', 10)
+        }
       }
     }
-    let theLetter = this.add.text(x, 50, letter, style)
-    theLetter.setShadow(0, 0, 'yellow', 10)
   }
   let createLetter = (letter, x, y) => {
     let theLetter = this.add.text(x, y, letter, style)
@@ -84,7 +87,7 @@ function create () {
     letters.push(theLetter)
   }
   function collectLetter (player, item) {
-    showAtTop(item.text)
+    showAtTop(item)
     item.destroy()
   }
 
