@@ -112,7 +112,7 @@ function create () {
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
 
-  // Add collectLetters func to all letters
+  // Add collectLetter func to all letters
   for (let i = 0; i < letters.length; i++) {
     this.physics.add.overlap(player, letters[i], collectLetter)
   }
