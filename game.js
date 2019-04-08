@@ -3,28 +3,30 @@
 
 let word = [
   {
-    letter: 'A',
+    letter: 'B',
     x: 250,
     y: 200
   },
   {
-    letter: 'P',
+    letter: 'I',
     x: 350,
     y: 200
   },
   {
-    letter: 'A',
+    letter: 'L',
     x: 600,
     y: 200
   }
 ]
 let platforms
+let extraAssets
 let player
 let cursors
 let jumping
 let playerY = 0
 let playerYDelayed = 0
 let letters = []
+let timer
 
 let game = new Phaser.Game(
   {
@@ -58,6 +60,10 @@ function preload () {
   // Ground assets
   this.load.image('ground_grass', 'assets/environment/ground_grass.png')
   this.load.image('ground_grass_small', 'assets/environment/ground_grass_small.png')
+
+  // Extra assets
+  this.load.image('cactus', 'assets/environment/cactus.png')
+  this.load.image('grass2', 'assets/environment/grass2.png')
 }
 
 function create () {
@@ -91,16 +97,42 @@ function create () {
     item.destroy()
   }
 
+  // Set timer start number to 0
+  timer = this.add.text(900, 50, "0", style)
+
+  let showTimer = (seconds) => {
+    timer.destroy()
+    timer = this.add.text(900, 50, seconds, style)
+    timer.setShadow(0, 0, 'yellow', 10)
+  }
+  setInterval(() => {
+    showTimer(parseInt(timer.text, 10) + 1)
+  }, 1000);
+
   cursors = this.input.keyboard.createCursorKeys()
 
   // Set background color and background
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
 
+  // Make extra stationary
+  extraAssets = this.physics.add.staticGroup()
+
+  // Place extra assets
+  extraAssets.create(250, 460, 'cactus').setScale(0.5)
+  extraAssets.create(250, 686, 'grass2').setScale(0.5).setRotation(45)
+
+  // Make platforms stationary
   platforms = this.physics.add.staticGroup()
+
+  // Place platforms
   platforms.create(250, 750, 'ground_grass')
   platforms.create(600, 650, 'ground_grass_small')
   platforms.create(300, 550, 'ground_grass_small')
+  platforms.create(600, 480, 'ground_grass_small').setScale(0.5)
+
+  platforms.children.entries[3].height = 1
+  console.log(platforms.children.entries[3].height)
 
   // Create all letters
   for (let i = 0; i < word.length; i++) {
@@ -185,5 +217,8 @@ function update () {
   // Debuggers
   this.input.keyboard.on('keydown_P', function (event) {
     console.log(player)
+  })
+  this.input.keyboard.on('keydown_U', function (event) {
+    player.body.velocity.y = -350
   })
 }
