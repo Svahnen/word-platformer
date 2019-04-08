@@ -12,7 +12,8 @@
     "eslint-plugin-standard": "^3.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "surge": "surge --project ./ --domain word-platformer.surge.sh"
   },
   "repository": {
     "type": "git",
