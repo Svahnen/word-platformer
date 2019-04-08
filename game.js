@@ -21,7 +21,7 @@ let word = [
 let platforms
 let player
 let cursors
-let airborn
+let jumping
 let playerY = 0
 let playerYDelayed = 0
 let letters = []
@@ -159,24 +159,24 @@ function update () {
     player.body.velocity.y = -350
   }
 
-  // Set airborn variable for the jumping animation
+  // Set jumping variable for the jumping animation
   if (cursors.up.isDown) {
-    airborn = true
+    jumping = true
   }
   playerY = Math.trunc(player.y)
   setTimeout(() => {
     playerYDelayed = Math.trunc(player.y)
   }, 50)
   if (playerY > playerYDelayed) {
-    airborn = false
+    jumping = false
   }
 
   // Show animations
-  if (airborn) {
+  if (jumping) {
     player.anims.play('bunny2-jump', true).setScale(0.3)
-  } else if (!airborn && cursors.left.isDown) {
+  } else if (!jumping && cursors.left.isDown) {
     player.anims.play('bunny2-walk', true).setScale(0.3)
-  } else if (!airborn && cursors.right.isDown) {
+  } else if (!jumping && cursors.right.isDown) {
     player.anims.play('bunny2-walk', true).setScale(0.3)
   } else {
     player.anims.play('bunny2-idle', true).setScale(0.3)
