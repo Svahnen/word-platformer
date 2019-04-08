@@ -4,17 +4,17 @@
 let word = [
   {
     letter: 'B',
-    x: 250,
-    y: 200
+    x: 470,
+    y: 100
   },
   {
     letter: 'I',
-    x: 350,
+    x: 280,
     y: 200
   },
   {
     letter: 'L',
-    x: 600,
+    x: 660,
     y: 200
   }
 ]
@@ -55,7 +55,7 @@ function preload () {
   this.load.image('bunny2_stand', 'assets/players/bunny2_stand.png')
 
   // Background assets
-  this.load.image('background', 'assets/background/bg_layer4.png')
+  this.load.image('background', 'assets/background/bg_layer2.png')
 
   // Ground assets
   this.load.image('ground_grass', 'assets/environment/ground_grass.png')
@@ -63,7 +63,9 @@ function preload () {
 
   // Extra assets
   this.load.image('cactus', 'assets/environment/cactus.png')
+  this.load.image('grass1', 'assets/environment/grass1.png')
   this.load.image('grass2', 'assets/environment/grass2.png')
+  this.load.image('mushroom_brown', 'assets/environment/mushroom_brown.png')
 }
 
 function create () {
@@ -119,17 +121,23 @@ function create () {
   extraAssets = this.physics.add.staticGroup()
 
   // Place extra assets
-  extraAssets.create(250, 460, 'cactus').setScale(0.5)
-  extraAssets.create(250, 686, 'grass2').setScale(0.5).setRotation(45)
+  extraAssets.create(230, 460, 'cactus').setScale(0.5)
+  extraAssets.create(830, 690, 'grass1').setScale(0.5)
+  extraAssets.create(890, 690, 'grass1').setScale(0.5)
+  extraAssets.create(220, 690, 'grass2').setScale(0.5)
+  extraAssets.create(260, 690, 'grass2').setScale(0.5)
+  extraAssets.create(300, 690, 'grass2').setScale(0.5)
+  extraAssets.create(860, 680, 'mushroom_brown').setScale(0.5)
 
   // Make platforms stationary
   platforms = this.physics.add.staticGroup()
 
   // Place platforms
-  platforms.create(250, 750, 'ground_grass')
-  platforms.create(600, 650, 'ground_grass_small')
-  platforms.create(300, 550, 'ground_grass_small')
-  platforms.create(600, 480, 'ground_grass_small').setScale(0.5)
+  platforms.create(170, 750, 'ground_grass')
+  platforms.create(860, 750, 'ground_grass')
+  platforms.create(500, 660, 'ground_grass_small')
+  platforms.create(230, 550, 'ground_grass_small')
+  platforms.create(640, 480, 'ground_grass_small')
 
   platforms.children.entries[3].height = 1
   console.log(platforms.children.entries[3].height)
@@ -144,7 +152,7 @@ function create () {
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
 
-  // Add collectLetter func to all letters
+  // Add collectLetter function to all letters
   for (let i = 0; i < letters.length; i++) {
     this.physics.add.overlap(player, letters[i], collectLetter)
   }
