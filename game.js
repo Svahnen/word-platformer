@@ -139,9 +139,6 @@ function create () {
   platforms.create(230, 550, 'ground_grass_small')
   platforms.create(640, 480, 'ground_grass_small')
 
-  platforms.children.entries[3].height = 1
-  console.log(platforms.children.entries[3].height)
-
   // Create all letters
   for (let i = 0; i < word.length; i++) {
     createLetter(word[i].letter, word[i].x, word[i].y)
@@ -149,6 +146,7 @@ function create () {
 
   // Spawn the player
   player = this.physics.add.sprite(100, 600, 'bunny2_stand').setScale(0.3)
+
   player.setCollideWorldBounds(true)
   this.physics.add.collider(player, platforms)
 
