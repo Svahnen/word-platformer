@@ -14,6 +14,8 @@ let playerYDelayed = 0
 let letters = []
 let collectedLetters = []
 let timer
+let finalScore
+let scoreSorted = []
 
 function preload () {
   // Add more scenes
@@ -163,6 +165,7 @@ function create () {
     player.body.velocity.y = -350
   })
   this.input.keyboard.on('keydown_S', (event) => {
+    finalScore = timer.text
     this.scene.start('scoreboard', scoreboard)
   })
   this.input.keyboard.on('keydown_P', function (event) {
@@ -173,6 +176,7 @@ function create () {
 function update () {
   // Load scoarboard if all letters are collected
   if (word.length === collectedLetters.length) {
+    finalScore = timer.text
     this.scene.start('scoreboard', scoreboard)
   }
 

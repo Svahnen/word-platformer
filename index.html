@@ -21,12 +21,19 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="phaser.min.js"></script>
+    <link rel="stylesheet" href="scoreboard-style.css">
 </head>
 <body>
     <div class='fontLoader' style='font-family: Lilita One;'>-</div>
     <script type="text/javascript" src="world.js"></script>
     <script type="text/javascript" src="scoreboard.js"></script>
     <script type="text/javascript" src="game.js"></script>
-    <div id='score'>test</div>
+    <div id='score' class="displayNone">
+        <div id="winner">
+            <h1>Du vann!</h1>
+        </div>
+        <input id="nameField" placeholder="Namn"></input>
+        <button id="nameButton" onClick="writeScore(document.querySelector('#nameField').value, finalScore, readScore, theScoreboard)">Ok</button>
+    </div>
 </body>
 </html>

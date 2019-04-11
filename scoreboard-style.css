@@ -1,0 +1,21 @@
+#score {
+    position: absolute;
+    left: 212px;
+    top: 134px;
+    width: 600px;
+    height: 500px;
+    background: white;
+    border: solid 1px black;
+}
+
+.displayNone {
+    display: none;
+}
+
+.displayDefault {
+    display: default;
+}
+
+.scoreboard {
+    background: blue;
+}

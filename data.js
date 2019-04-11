@@ -31,12 +31,9 @@ let writeScore = (name, time, callback1, callback2) => {
     })
 }
 
-function test () {
-  console.log('opening modal')
-}
-
 // Read
 let readScore = (callback) => {
+  loadingScreen()
   scoreData = []
   return db.collection('score').get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {

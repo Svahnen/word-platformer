@@ -14,10 +14,49 @@ function create () {
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
 
-  // TODO: Push the scoreboard in here
-  document.querySelector('#score').innerHTML = '<h1>hi</h1>'
+  removeClasses('#score')
+
+  document.querySelector('#nameField').addEventListener('keyup', event => {
+    if (event.key !== 'Enter') return
+    document.querySelector('#nameButton').click()
+    event.preventDefault()
+  })
 }
 
 function update () {
 
+}
+
+function addClass (id, theClass) {
+  document.querySelector(id).classList += theClass
+}
+
+function removeClasses (id) {
+  document.querySelector(id).classList = ''
+}
+
+function theScoreboard () {
+  sortScore()
+  document.querySelector('#score').innerHTML = (
+    '<ul class="scoreboard">' +
+    '</ul>'
+  )
+  for (let i = 0; i < scoreData.length; i++) {
+    document.querySelector('#score > ul').innerHTML += (
+      '<li>' + scoreSorted[i].name + ' ' + scoreSorted[i].time + '</li>'
+    )
+  }
+}
+
+function sortScore () {
+  scoreSorted = scoreData.sort(function (a, b) {
+    return a.time - b.time
+  })
+}
+
+function loadingScreen () {
+  sortScore()
+  document.querySelector('#score').innerHTML = (
+    'Loading'
+  )
 }
