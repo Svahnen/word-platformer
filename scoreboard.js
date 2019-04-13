@@ -38,6 +38,8 @@ function removeClasses (id) {
 function theScoreboard () {
   sortScore()
   document.querySelector('#score').innerHTML = (
+    '<h2 class="scoreboard-title">Topplista' +
+    '</h2>' +
     '<ul class="scoreboard">' +
     '</ul>'
   )

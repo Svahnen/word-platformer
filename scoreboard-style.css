@@ -1,11 +1,14 @@
 #score {
+    background-color: #c4ecff96;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    border-color: #29292941;
     position: absolute;
     left: 212px;
     top: 134px;
     width: 600px;
     height: 500px;
-    background: white;
-    border: solid 1px black;
 }
 
 .displayNone {
@@ -16,6 +19,32 @@
     display: default;
 }
 
+.scoreboard-title {
+    font-family: Lilita One;
+    color: #ffd700;
+    text-shadow: 0px 0px 2px black;
+    padding-left: 248px;
+}
+
 .scoreboard {
-    background: blue;
+    font-family: Lilita One;
+    color: #2c2c2c;
+    padding-left: 248px;
+}
+
+#winner {
+    text-align: center;
+    margin-top: 180px;
+    font-family: Lilita One;
+    color: #ffd700;
+    text-shadow: 0px 0px 2px black;
+}
+
+#nameField {
+    margin-left: 220px;
+    font-family: Lilita One;
+}
+
+#nameButton {
+    font-family: Lilita One;
 }

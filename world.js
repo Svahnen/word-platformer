@@ -44,7 +44,7 @@ function preload () {
 function create () {
   let style = {
     font: '48px Lilita One',
-    fill: '#e5c100',
+    fill: '#ffd700',
     align: 'center'
   }
   let showAtTop = (item) => {
@@ -55,7 +55,7 @@ function create () {
         if (word[i].x === item.x) {
           x = 50 * i + 50
           let theLetter = this.add.text(x, 50, letter, style)
-          theLetter.setShadow(0, 0, 'yellow', 10)
+          theLetter.setShadow(0, 0, 'black', 2)
           collectedLetters.push(letter)
         }
       }
@@ -64,7 +64,7 @@ function create () {
   let createLetter = (letter, x, y) => {
     let theLetter = this.add.text(x, y, letter, style)
     this.physics.world.enable(theLetter)
-    theLetter.setShadow(0, 0, 'yellow', 10)
+    theLetter.setShadow(0, 0, 'black', 2)
     this.physics.add.collider(theLetter, platforms)
     letters.push(theLetter)
   }
@@ -80,7 +80,7 @@ function create () {
   let showTimer = (seconds) => {
     timer.destroy()
     timer = this.add.text(900, 50, seconds, style)
-    timer.setShadow(0, 0, 'yellow', 10)
+    timer.setShadow(0, 0, 'black', 2)
   }
   setInterval(() => {
     showTimer(parseInt(timer.text, 10) + 1)
@@ -174,7 +174,7 @@ function create () {
 }
 
 function update () {
-  // Load scoarboard if all letters are collected
+  // Load scoreboard if all letters are collected
   if (word.length === collectedLetters.length) {
     finalScore = timer.text
     this.scene.start('scoreboard', scoreboard)
