@@ -19,14 +19,14 @@
     display: default;
 }
 
-.scoreboard-title {
+#score > h2 {
     font-family: Lilita One;
     color: #ffd700;
     text-shadow: 0px 0px 2px black;
     padding-left: 248px;
 }
 
-.scoreboard {
+#score > ol {
     font-family: Lilita One;
     color: #2c2c2c;
     padding-left: 248px;

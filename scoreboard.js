@@ -38,13 +38,13 @@ function removeClasses (id) {
 function theScoreboard () {
   sortScore()
   document.querySelector('#score').innerHTML = (
-    '<h2 class="scoreboard-title">Topplista' +
+    '<h2>Topplista' +
     '</h2>' +
-    '<ul class="scoreboard">' +
-    '</ul>'
+    '<ol>' +
+    '</ol>'
   )
   for (let i = 0; i < scoreData.length; i++) {
-    document.querySelector('#score > ul').innerHTML += (
+    document.querySelector('#score > ol').innerHTML += (
       '<li>' + scoreSorted[i].name + ' ' + scoreSorted[i].time + '</li>'
     )
   }
