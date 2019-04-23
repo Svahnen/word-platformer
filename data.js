@@ -56,3 +56,12 @@ let deleteScore = (id) => {
     console.error('Error removing document: ', error)
   })
 }
+
+// Delete all scores
+let wipeAllScores = () => {
+  return db.collection('score').get().then(function (querySnapshot) {
+    querySnapshot.forEach(function (doc) {
+      deleteScore(doc.id)
+    })
+  })
+}
