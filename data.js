@@ -38,10 +38,19 @@ let readScore = (callback) => {
   return db.collection('score').get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
       scoreData.push(doc.data())
+      console.log(doc.id, doc.data())
     })
     if (callback !== undefined) {
       callback()
     }
-    console.log(scoreData)
+  })
+}
+
+// Delete specific score
+let deleteScore = (id) => {
+  db.collection('score').doc(id).delete().then(function () {
+    console.log('Document successfully deleted!')
+  }).catch(function (error) {
+    console.error('Error removing document: ', error)
   })
 }
