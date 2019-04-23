@@ -4,6 +4,11 @@ let scoreboard = {
   update: update
 }
 
+function alphaOnly (event) {
+  var key = event.keyCode
+  return ((key >= 65 && key <= 90) || key === 8)
+};
+
 function preload () {
   // Background assets
   this.load.image('background', 'assets/background/bg_layer2.png')
