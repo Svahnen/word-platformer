@@ -4,10 +4,7 @@ let scoreboard = {
   update: update
 }
 
-function alphaOnly (event) {
-  var key = event.keyCode
-  return ((key >= 65 && key <= 90) || key === 8)
-};
+let reg = /^[a-z]+$/i
 
 function preload () {
   // Background assets
@@ -21,10 +18,16 @@ function create () {
 
   removeClasses('#score')
 
+  // Only letters can be entered in the input field
+  document.querySelector('#nameField').addEventListener('keydown', event => {
+    if (!reg.test(event.key)) {
+      event.preventDefault()
+    }
+  })
   document.querySelector('#nameField').addEventListener('keyup', event => {
     if (event.key !== 'Enter') return
-    document.querySelector('#nameButton').click()
     event.preventDefault()
+    document.querySelector('#nameButton').click()
   })
 }
 
