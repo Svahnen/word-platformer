@@ -27,6 +27,12 @@ function create () {
   })
 
   document.querySelector('#nameField').addEventListener('keyup', event => {
+    if (document.querySelector('#nameField').value.length > 15) {
+      document.querySelector('#nameField').value = document.querySelector('#nameField').value.slice(0, -1)
+    }
+  })
+
+  document.querySelector('#nameField').addEventListener('keyup', event => {
     if (event.key !== 'Enter') return
     event.preventDefault()
     document.querySelector('#nameButton').click()
@@ -40,9 +46,7 @@ function create () {
 }
 
 function update () {
-  if (document.querySelector('#nameField').value.length > 15) {
-    document.querySelector('#nameField').value = document.querySelector('#nameField').value.slice(0, -1)
-  }
+
 }
 
 function addClass (id, theClass) {
