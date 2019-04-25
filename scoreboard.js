@@ -16,7 +16,7 @@ function create () {
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
 
-  removeClasses('#score')
+  removeClasses('#hidden')
 
   // Only letters can be entered in the input field
   document.querySelector('#nameField').addEventListener('keydown', event => {

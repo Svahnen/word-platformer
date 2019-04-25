@@ -1,3 +1,21 @@
+.displayNone {
+    display: none;
+}
+
+.displayDefault {
+    display: default;
+}
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+}
+
 #score {
     background-color: #c4ecff96;
     border-style: solid;
@@ -11,12 +29,8 @@
     height: 500px;
 }
 
-.displayNone {
-    display: none;
-}
-
-.displayDefault {
-    display: default;
+#score > div {
+    margin: auto;
 }
 
 #score > h2 {
@@ -26,6 +40,12 @@
     padding-left: 248px;
 }
 
+#score p {
+    text-align: center;
+    padding: 0 100px;
+}
+
+
 #score > ol {
     font-family: Lilita One;
     color: #2c2c2c;
@@ -34,19 +54,19 @@
 
 #winner {
     text-align: center;
-    margin-top: 180px;
     font-family: Lilita One;
     color: #ffd700;
     text-shadow: 0px 0px 2px black;
 }
 
 #nameField {
-    margin-left: 220px;
     font-family: Lilita One;
+    margin-left: auto;
 }
 
 #nameButton {
     font-family: Lilita One;
+    margin-right: auto;
 }
 
 #playAgain {

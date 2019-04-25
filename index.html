@@ -12,6 +12,7 @@
             src: local('Lilita One'), local('LilitaOne'), url(assets/fonts/i7dPIFZ9Zz-WBtRtedDbYEF8RQ.woff2) format('woff2');
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
+
         .fontLoader {
             position: absolute;
             left: -1000px;
@@ -24,20 +25,30 @@
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="scoreboard-style.css">
 </head>
+
 <body>
     <div class='fontLoader' style='font-family: Lilita One;'>-</div>
     <script type="text/javascript" src="world.js"></script>
     <script type="text/javascript" src="scoreboard.js"></script>
     <script type="text/javascript" src="game.js"></script>
     <button onclick="window.location.reload()" id="playAgain">Starta om</button>
-    <div id='score' class="displayNone">
-        <div id="winner">
-            <h1>Du vann!</h1>
-            <h2 id="showScore">Din tid blev </h2>
-        </div>
-        <p>Om du vill spara ditt resultat så andra kan se det, skriv ditt namn i rutan och använd endast bokstäver.</p>
-        <input id="nameField" placeholder="Namn"></input>
-        <button id="nameButton" onClick="writeScore(document.querySelector('#nameField').value, finalScore, readScore, theScoreboard)">Ok</button>
+    <div id="hidden" class="displayNone">
+            <div id='score' class="flexColumn">
+                    <div>
+                        <div id="winner">
+                            <h1>Du vann!</h1>
+                            <h2 id="showScore">Din tid blev </h2>
+                        </div>
+                        <p>Om du vill spara ditt resultat så andra kan se det, skriv ditt namn i rutan och använd endast bokstäver.
+                        </p>
+                        <div class="flexRow">
+                            <input id="nameField" placeholder="Namn"></input>
+                            <button id="nameButton"
+                                onClick="writeScore(document.querySelector('#nameField').value, finalScore, readScore, theScoreboard)">Ok</button>
+                        </div>
+                    </div>
+                </div>
     </div>
 </body>
+
 </html>
