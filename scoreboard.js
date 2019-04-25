@@ -29,6 +29,12 @@ function create () {
     event.preventDefault()
     document.querySelector('#nameButton').click()
   })
+  document.querySelector('#nameField').focus()
+  if (finalScore === '1') {
+    document.querySelector('#showScore').innerHTML += finalScore + ' sekund'
+  } else {
+    document.querySelector('#showScore').innerHTML += finalScore + ' sekunder'
+  }
 }
 
 function update () {
