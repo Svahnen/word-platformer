@@ -16,6 +16,7 @@ let collectedLetters = []
 let timer
 let finalScore
 let scoreSorted = []
+let spaceBar
 
 function preload () {
   // Add more scenes
@@ -42,6 +43,7 @@ function preload () {
 }
 
 function create () {
+  spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
   let style = {
     font: '48px Lilita One',
     fill: '#ffd700',
@@ -191,12 +193,13 @@ function update () {
   }
   if (cursors.up.isDown && player.body.onFloor()) {
     player.body.velocity.y = -350
-  }
-
-  // Set jumping variable for the jumping animation
-  if (cursors.up.isDown) {
     jumping = true
   }
+  if (spaceBar.isDown && player.body.onFloor()) {
+    player.body.velocity.y = -350
+    jumping = true
+  }
+
   playerY = Math.trunc(player.y)
   setTimeout(() => {
     playerYDelayed = Math.trunc(player.y)
