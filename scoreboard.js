@@ -4,7 +4,8 @@ let scoreboard = {
   update: update
 }
 
-let reg = /^[a-zA-Z\u0080-\u00FF]+$/
+let regLetters = /^[a-zA-Z\u0080-\u00FF]+$/
+let regNumbers = /^[0-9]+$/
 
 function preload () {
   // Background assets
@@ -20,10 +21,11 @@ function create () {
 
   // Only letters can be entered in the input field
   document.querySelector('#nameField').addEventListener('keydown', event => {
-    if (!reg.test(event.key)) {
+    if (!regLetters.test(event.key)) {
       event.preventDefault()
     }
   })
+
   document.querySelector('#nameField').addEventListener('keyup', event => {
     if (event.key !== 'Enter') return
     event.preventDefault()
@@ -38,7 +40,9 @@ function create () {
 }
 
 function update () {
-
+  if (document.querySelector('#nameField').value.length > 15) {
+    document.querySelector('#nameField').value = document.querySelector('#nameField').value.slice(0, -1)
+  }
 }
 
 function addClass (id, theClass) {

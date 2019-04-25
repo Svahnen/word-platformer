@@ -16,20 +16,22 @@ firebase.auth().signInAnonymously().catch(function (error) {
 
 // Write
 let writeScore = (name, time, callback1, callback2) => {
-  if (reg.test(document.querySelector('#nameField').value)) {
-    return db.collection('score').add({
-      name: name,
-      time: time
-    })
-      .then(function (docRef) {
-        console.log('Document written with ID: ', docRef.id)
-        if (callback1 !== undefined) {
-          callback1(callback2)
-        }
+  if (name.length < 16 && time.length < 6) {
+    if (regLetters.test(name) && regNumbers.test(time)) {
+      return db.collection('score').add({
+        name: name,
+        time: time
       })
-      .catch(function (error) {
-        console.error('Error adding document: ', error)
-      })
+        .then(function (docRef) {
+          console.log('Document written with ID: ', docRef.id)
+          if (callback1 !== undefined) {
+            callback1(callback2)
+          }
+        })
+        .catch(function (error) {
+          console.error('Error adding document: ', error)
+        })
+    }
   }
 }
 
