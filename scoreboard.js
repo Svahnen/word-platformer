@@ -4,7 +4,7 @@ let scoreboard = {
   update: update
 }
 
-let reg = /^[a-z]+$/i
+let reg = /^[a-zA-Z\u0080-\u00FF]+$/
 
 function preload () {
   // Background assets

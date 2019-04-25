@@ -21,6 +21,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
     <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="phaser.min.js"></script>
+    <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="scoreboard-style.css">
 </head>
 <body>
@@ -31,11 +32,10 @@
     <button onclick="window.location.reload()" id="playAgain">Starta om</button>
     <div id='score' class="displayNone">
         <div id="winner">
-            <h1>Vinnare!</h1>
+            <h1>Du vann!</h1>
             <h2 id="showScore">Din tid blev </h2>
-            <h2>Ange ditt namn nedan om du vill spara det så andra kan se ditt resultat</h2>
-            <h4>Använd endast A-Z</h4>
         </div>
+        <p>Om du vill spara ditt resultat så andra kan se det, skriv ditt namn i rutan och använd endast bokstäver.</p>
         <input id="nameField" placeholder="Namn"></input>
         <button id="nameButton" onClick="writeScore(document.querySelector('#nameField').value, finalScore, readScore, theScoreboard)">Ok</button>
     </div>
