@@ -24,12 +24,6 @@ function create () {
     if (!regLetters.test(event.key)) {
       event.preventDefault()
     }
-    if (document.querySelector('#nameField').value.length > 14) {
-      if (event.key === 'Backspace') {
-        document.querySelector('#nameField').value = document.querySelector('#nameField').value.slice(0, -1)
-      }
-      event.preventDefault()
-    }
   })
 
   document.querySelector('#nameField').addEventListener('keyup', event => {
