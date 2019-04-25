@@ -163,9 +163,6 @@ function create () {
   })
 
   // Debuggers
-  finalScore = '5670' // REMOVE!!!!
-  this.scene.start('scoreboard', scoreboard) // REMOVE!!!!
-
   this.input.keyboard.on('keydown_U', function (event) {
     player.body.velocity.y = -350
   })
