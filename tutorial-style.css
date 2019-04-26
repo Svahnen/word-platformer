@@ -16,7 +16,7 @@
 
 #leftArrow {
     background-image: url(assets/tutorial/keysextended.svg);
-    background-position: -42px -140px; 
+    background-position: -42px -140px;
     width: 54px;
     height: 47px;
     top: 550px;
@@ -26,7 +26,7 @@
 
 #upArrow {
     background-image: url(assets/tutorial/keysextended.svg);
-    background-position: -100px -95px; 
+    background-position: -100px -95px;
     width: 54px;
     height: 47px;
     top: 495px;
@@ -36,7 +36,7 @@
 
 #rightArrow {
     background-image: url(assets/tutorial/keysextended.svg);
-    background-position: -158px -140px; 
+    background-position: -158px -140px;
     width: 54px;
     height: 47px;
     top: 550px;
@@ -45,16 +45,93 @@
 }
 
 #player {
-    background-image: url(assets/players/bunny2_stand.png);
-    background-size: 60px;
     background-repeat: no-repeat;
-    width: 60px;
+    position: absolute;
     height: 100px;
+}
+
+.idle {
+    width: 60px;
     top: 350px;
     left: 482px;
-    position: absolute;
+    background-image: url(assets/players/bunny2_stand.png);
+    background-size: 60px;
+}
+
+.walkRight {
+    width: 60px;
+    top: 350px;
+    left: 482px;
+    animation: walk 400ms infinite;
+    background-size: 60px;
+}
+
+.walkLeft {
+    width: 60px;
+    top: 350px;
+    left: 482px;
+    animation: walk 400ms infinite;
+    background-size: 60px;
+    transform: rotateY(180deg);
+}
+
+@keyframes walk {
+
+    0%,
+    50% {
+        background-image: url(assets/players/bunny2_walk1.png);
+    }
+
+    51%,
+    100% {
+        background-image: url(assets/players/bunny2_walk2.png);
+    }
+}
+
+.jump {
+    background-size: 60px;
+    width: 75px;
+    left: 482px;
+    top: 350px;
+    background-image: url(assets/players/bunny2_stand.png);
+    animation: jump 1.2s 2;
+}
+
+@keyframes jump {
+
+    0% {
+        background-size: 75px;
+        width: 75px;
+        left: 475px;
+        top: 350px;
+        background-image: url(assets/players/bunny2_jump.png);
+    }
+
+     55% {
+        background-size: 75px;
+        width: 75px;
+        left: 475px;
+        top: 275px;
+        background-image: url(assets/players/bunny2_jump.png);
+    }
+
+    56% {
+        background-size: 60px;
+        width: 75px;
+        left: 482px;
+        top: 275px;
+        background-image: url(assets/players/bunny2_stand.png);
+    }
+
+    100% {
+        background-size: 60px;
+        width: 60px;
+        left: 482px;
+        top: 350px;
+        background-image: url(assets/players/bunny2_stand.png);
+    }
 }
 
 .selected {
     border: solid 2px red;
-}
+};
