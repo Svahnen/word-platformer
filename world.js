@@ -4,20 +4,6 @@ let world = {
   update: update
 }
 
-let platforms
-let extraAssets
-let player
-let cursors
-let jumping
-let playerY = 0
-let playerYDelayed = 0
-let letters = []
-let collectedLetters = []
-let timer
-let finalScore
-let scoreSorted = []
-let spaceBar
-
 function preload () {
   // Add more scenes
   this.scene.add('scoreboard', scoreboard)

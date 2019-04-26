@@ -1,5 +1,3 @@
-let scoreData = []
-
 // Initialize Cloud Firestore through Firebase
 firebase.initializeApp({
   apiKey: 'AIzaSyANSdO0NqlVbbw0Rw-egbRAe0x9k_eNSjQ',

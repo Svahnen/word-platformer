@@ -81,4 +81,5 @@
     color: #ffd700;
     background: inherit;
     border:none;
+    z-index: 9999;
 }

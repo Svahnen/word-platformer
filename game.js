@@ -28,5 +28,5 @@ let game = new Phaser.Game(
         debug: false
       }
     },
-    scene: world
+    scene: tutorial
   })

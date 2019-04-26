@@ -1,11 +1,7 @@
 let scoreboard = {
   preload: preload,
-  create: create,
-  update: update
+  create: create
 }
-
-let regLetters = /^[a-zA-Z\u0080-\u00FF]+$/
-let regNumbers = /^[0-9]+$/
 
 function preload () {
   // Background assets
@@ -37,18 +33,6 @@ function create () {
   } else {
     document.querySelector('#showScore').innerHTML += finalScore + ' sekunder'
   }
-}
-
-function update () {
-
-}
-
-function addClass (id, theClass) {
-  document.querySelector(id).classList += theClass
-}
-
-function removeClasses (id) {
-  document.querySelector(id).classList = ''
 }
 
 function theScoreboard () {

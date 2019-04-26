@@ -25,14 +25,23 @@
     <script type="text/javascript" src="phaser.min.js"></script>
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="scoreboard-style.css">
+    <link rel="stylesheet" href="tutorial-style.css">
 </head>
 
 <body>
     <div class='fontLoader' style='font-family: Lilita One;'>-</div>
+    <script type="text/javascript" src="global.js"></script>
+    <script type="text/javascript" src="tutorial.js"></script>
     <script type="text/javascript" src="world.js"></script>
     <script type="text/javascript" src="scoreboard.js"></script>
     <script type="text/javascript" src="game.js"></script>
     <button onclick="window.location.reload()" id="playAgain">Starta om</button>
+    <div id="tutorial">
+        <div id="spaceBar"></div>
+        <div id="leftArrow"></div>
+        <div id="upArrow"></div>
+        <div id="rightArrow"></div>
+    </div>
     <div id="hidden" class="displayNone">
             <div id='score' class="flexColumn">
                     <div>
