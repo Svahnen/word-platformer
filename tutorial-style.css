@@ -5,7 +5,7 @@
 }
 
 #spaceBar {
-    background: url(assets/tutorial/keysextended.svg);
+    background-image: url(assets/tutorial/keysextended.svg);
     background-position: -43px -190px;
     width: 170px;
     height: 47px;
@@ -15,7 +15,7 @@
 }
 
 #leftArrow {
-    background: url(assets/tutorial/keysextended.svg);
+    background-image: url(assets/tutorial/keysextended.svg);
     background-position: -42px -140px; 
     width: 54px;
     height: 47px;
@@ -25,7 +25,7 @@
 }
 
 #upArrow {
-    background: url(assets/tutorial/keysextended.svg);
+    background-image: url(assets/tutorial/keysextended.svg);
     background-position: -100px -95px; 
     width: 54px;
     height: 47px;
@@ -35,12 +35,23 @@
 }
 
 #rightArrow {
-    background: url(assets/tutorial/keysextended.svg);
+    background-image: url(assets/tutorial/keysextended.svg);
     background-position: -158px -140px; 
     width: 54px;
     height: 47px;
     top: 550px;
     left: 655px;
+    position: absolute;
+}
+
+#player {
+    background-image: url(assets/players/bunny2_stand.png);
+    background-size: 60px;
+    background-repeat: no-repeat;
+    width: 60px;
+    height: 100px;
+    top: 350px;
+    left: 482px;
     position: absolute;
 }
 
