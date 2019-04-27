@@ -1,3 +1,14 @@
+#preload {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    background: url(assets/players/bunny2_stand.png) no-repeat -9999px -9999px,
+    url(assets/players/bunny2_walk1.png) no-repeat -9999px -9999px,
+    url(assets/players/bunny2_walk2.png) no-repeat -9999px -9999px,
+    url(assets/players/bunny2_jump.png) no-repeat -9999px -9999px,
+    url(assets/tutorial/keysextended.svg)
+}
+
 #tutorial {
     position: absolute;
     height: 768px;
@@ -107,7 +118,7 @@
         background-image: url(assets/players/bunny2_jump.png);
     }
 
-     55% {
+    55% {
         background-size: 75px;
         width: 75px;
         left: 475px;
@@ -134,4 +145,6 @@
 
 .selected {
     border: solid 2px red;
-};
+}
+
+;

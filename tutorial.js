@@ -13,15 +13,21 @@ function create () {
   // Set background color and background
   this.cameras.main.setBackgroundColor('#ffffff')
   this.add.image(500, 350, 'background').setScale(0.55)
-  tutorialWalkRight()
-  setTimeout(() => {
-    tutorialWalkLeft()
-  }, 3500)
-  setTimeout(() => {
-    tutorialJump()
-  }, 7000)
-  setTimeout(() => {
-    document.querySelector('#tutorial').classList = 'displayNone'
-    this.scene.start('world', world)
-  }, 10000)
+
+  let runTutorial = () => {
+    setTimeout(() => {
+      tutorialWalkRight()
+    }, 1000)
+    setTimeout(() => {
+      tutorialWalkLeft()
+    }, 4500)
+    setTimeout(() => {
+      tutorialJump()
+    }, 8000)
+    setTimeout(() => {
+      document.querySelector('#tutorial').classList = 'displayNone'
+      this.scene.start('world', world)
+    }, 12000)
+  }
+  document.querySelector('#preload').addEventListener('load', runTutorial())
 }
