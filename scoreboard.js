@@ -3,6 +3,34 @@ let scoreboard = {
   create: create
 }
 
+function theScoreboard () {
+  sortScore()
+  document.querySelector('#score').innerHTML = (
+    '<h2>Topplista' +
+    '</h2>' +
+    '<ol>' +
+    '</ol>'
+  )
+  for (let i = 0; i < scoreData.length; i++) {
+    document.querySelector('#score > ol').innerHTML += (
+      '<li>' + scoreSorted[i].name + ' ' + scoreSorted[i].time + '</li>'
+    )
+  }
+}
+
+function sortScore () {
+  scoreSorted = scoreData.sort(function (a, b) {
+    return a.time - b.time
+  })
+}
+
+function loadingScreen () {
+  sortScore()
+  document.querySelector('#score').innerHTML = (
+    'Loading'
+  )
+}
+
 function preload () {
   // Background assets
   this.load.image('background', 'assets/background/bg_layer2.png')
@@ -33,32 +61,4 @@ function create () {
   } else {
     document.querySelector('#showScore').innerHTML += finalScore + ' sekunder'
   }
-}
-
-function theScoreboard () {
-  sortScore()
-  document.querySelector('#score').innerHTML = (
-    '<h2>Topplista' +
-    '</h2>' +
-    '<ol>' +
-    '</ol>'
-  )
-  for (let i = 0; i < scoreData.length; i++) {
-    document.querySelector('#score > ol').innerHTML += (
-      '<li>' + scoreSorted[i].name + ' ' + scoreSorted[i].time + '</li>'
-    )
-  }
-}
-
-function sortScore () {
-  scoreSorted = scoreData.sort(function (a, b) {
-    return a.time - b.time
-  })
-}
-
-function loadingScreen () {
-  sortScore()
-  document.querySelector('#score').innerHTML = (
-    'Loading'
-  )
 }

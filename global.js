@@ -23,32 +23,3 @@ function addClass (id, theClass) {
 function removeClasses (id) {
   document.querySelector(id).classList = ''
 }
-
-function tutorialJump () {
-  document.querySelector('#spaceBar').classList = 'selected'
-  document.querySelector('#upArrow').classList = 'selected'
-  document.querySelector('#player').classList = 'jump'
-  setTimeout(() => {
-    document.querySelector('#player').classList = 'idle'
-    document.querySelector('#spaceBar').classList = ''
-    document.querySelector('#upArrow').classList = ''
-  }, 3000)
-}
-
-function tutorialWalkLeft () {
-  document.querySelector('#leftArrow').classList = 'selected'
-  document.querySelector('#player').classList = 'walkLeft'
-  setTimeout(() => {
-    document.querySelector('#player').classList = 'idle'
-    document.querySelector('#leftArrow').classList = ''
-  }, 3000)
-}
-
-function tutorialWalkRight () {
-  document.querySelector('#rightArrow').classList = 'selected'
-  document.querySelector('#player').classList = 'walkRight'
-  setTimeout(() => {
-    document.querySelector('#player').classList = 'idle'
-    document.querySelector('#rightArrow').classList = ''
-  }, 3000)
-}

@@ -12,7 +12,7 @@ firebase.auth().signInAnonymously().catch(function (error) {
   return (errorCode, errorMessage)
 })
 
-// Write
+// Write to database
 let writeScore = (name, time, callback1, callback2) => {
   if (name.length < 16 && time.length < 6) {
     if (regLetters.test(name) && regNumbers.test(time)) {
@@ -21,7 +21,6 @@ let writeScore = (name, time, callback1, callback2) => {
         time: time
       })
         .then(function (docRef) {
-          console.log('Document written with ID: ', docRef.id)
           if (callback1 !== undefined) {
             callback1(callback2)
           }
@@ -33,14 +32,13 @@ let writeScore = (name, time, callback1, callback2) => {
   }
 }
 
-// Read
+// Read from database
 let readScore = (callback) => {
   loadingScreen()
   scoreData = []
   return db.collection('score').get().then(function (querySnapshot) {
     querySnapshot.forEach(function (doc) {
       scoreData.push(doc.data())
-      console.log(doc.id, doc.data())
     })
     if (callback !== undefined) {
       callback()

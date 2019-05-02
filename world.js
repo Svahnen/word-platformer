@@ -147,18 +147,6 @@ function create () {
     frameRate: 1,
     repeat: 0
   })
-
-  // Debuggers
-  this.input.keyboard.on('keydown_U', function (event) {
-    player.body.velocity.y = -350
-  })
-  this.input.keyboard.on('keydown_S', (event) => {
-    finalScore = timer.text
-    this.scene.start('scoreboard', scoreboard)
-  })
-  this.input.keyboard.on('keydown_P', function (event) {
-    console.log(player)
-  })
 }
 
 function update () {
@@ -186,14 +174,6 @@ function update () {
     jumping = true
   }
 
-  playerY = Math.trunc(player.y)
-  setTimeout(() => {
-    playerYDelayed = Math.trunc(player.y)
-  }, 50)
-  if (playerY > playerYDelayed) {
-    jumping = false
-  }
-
   // Show animations
   if (jumping) {
     player.anims.play('bunny2-jump', true).setScale(0.3)
@@ -203,5 +183,13 @@ function update () {
     player.anims.play('bunny2-walk', true).setScale(0.3)
   } else {
     player.anims.play('bunny2-idle', true).setScale(0.3)
+  }
+  // Turn off the jumping animation when falling
+  playerY = Math.trunc(player.y)
+  setTimeout(() => {
+    playerYDelayed = Math.trunc(player.y)
+  }, 50)
+  if (playerY > playerYDelayed) {
+    jumping = false
   }
 }
