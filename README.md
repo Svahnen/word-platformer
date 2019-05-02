@@ -11,3 +11,7 @@ This game is our final project for our education in becoming Front End Developer
 
 ## To other developers
 We have designed this game under the MIT license and our goal was to make something that was easy to build upon. We made sure to use ESlint rules and write appropriate comments in the code.
+
+## About us
+Our names are Svahnen and emmeline-mutka and we study Front End Development.
+We have created this as our final project for our education and we had certain criterias to match.
